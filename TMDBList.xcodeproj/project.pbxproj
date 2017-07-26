@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2E91AF393ED8856E31C5F32E /* Pods_TMDBList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303D6DE346438F2819636F16 /* Pods_TMDBList.framework */; };
+		5F4468B51F28EDF5005E2F98 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4468B41F28EDF5005E2F98 /* Target.swift */; };
+		5F4468B71F28F9BF005E2F98 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4468B61F28F9BF005E2F98 /* Provider.swift */; };
+		5F4468B91F28F9DF005E2F98 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4468B81F28F9DF005E2F98 /* Helper.swift */; };
+		5F4468BB1F28FA22005E2F98 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4468BA1F28FA22005E2F98 /* APIClient.swift */; };
 		5F49EBB41F28E49B00564A38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49EBB31F28E49B00564A38 /* AppDelegate.swift */; };
 		5F49EBB61F28E49B00564A38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49EBB51F28E49B00564A38 /* ViewController.swift */; };
 		5F49EBB91F28E49B00564A38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F49EBB71F28E49B00564A38 /* Main.storyboard */; };
@@ -19,6 +23,10 @@
 /* Begin PBXFileReference section */
 		12DDEB1BD90A52A5957AA566 /* Pods-TMDBList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDBList.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMDBList/Pods-TMDBList.release.xcconfig"; sourceTree = "<group>"; };
 		303D6DE346438F2819636F16 /* Pods_TMDBList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDBList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F4468B41F28EDF5005E2F98 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
+		5F4468B61F28F9BF005E2F98 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		5F4468B81F28F9DF005E2F98 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		5F4468BA1F28FA22005E2F98 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5F49EBB01F28E49B00564A38 /* TMDBList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F49EBB31F28E49B00564A38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F49EBB51F28E49B00564A38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +59,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5F4468B01F28EC46005E2F98 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5F4468B11F28EC50005E2F98 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5F4468B21F28EC59005E2F98 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F4468B31F28EC64005E2F98 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5F4468B41F28EDF5005E2F98 /* Target.swift */,
+				5F4468B61F28F9BF005E2F98 /* Provider.swift */,
+				5F4468BA1F28FA22005E2F98 /* APIClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		5F49EBA71F28E49A00564A38 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +111,10 @@
 		5F49EBB21F28E49B00564A38 /* TMDBList */ = {
 			isa = PBXGroup;
 			children = (
+				5F4468B31F28EC64005E2F98 /* Network */,
+				5F4468B01F28EC46005E2F98 /* Model */,
+				5F4468B11F28EC50005E2F98 /* View */,
+				5F4468B21F28EC59005E2F98 /* ViewModel */,
 				5F49EBB31F28E49B00564A38 /* AppDelegate.swift */,
 				5F49EBB51F28E49B00564A38 /* ViewController.swift */,
 				5FCE194F1F28EA26007A6910 /* R.generated.swift */,
@@ -79,6 +122,7 @@
 				5F49EBBA1F28E49B00564A38 /* Assets.xcassets */,
 				5F49EBBC1F28E49B00564A38 /* LaunchScreen.storyboard */,
 				5F49EBBF1F28E49B00564A38 /* Info.plist */,
+				5F4468B81F28F9DF005E2F98 /* Helper.swift */,
 			);
 			path = TMDBList;
 			sourceTree = "<group>";
@@ -230,8 +274,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F49EBB61F28E49B00564A38 /* ViewController.swift in Sources */,
+				5F4468BB1F28FA22005E2F98 /* APIClient.swift in Sources */,
 				5F49EBB41F28E49B00564A38 /* AppDelegate.swift in Sources */,
+				5F4468B51F28EDF5005E2F98 /* Target.swift in Sources */,
+				5F4468B71F28F9BF005E2F98 /* Provider.swift in Sources */,
 				5FCE19501F28EA26007A6910 /* R.generated.swift in Sources */,
+				5F4468B91F28F9DF005E2F98 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

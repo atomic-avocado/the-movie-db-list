@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController {
+    
+    var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.green
+        APIClient.getUpcoming().subscribe(onNext: { (_) in
+            print("SUCCESS!!!")
+        }).addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
