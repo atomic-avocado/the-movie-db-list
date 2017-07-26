@@ -16,7 +16,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.green
-        APIClient.getUpcoming().subscribe(onNext: { (_) in
+        APIClient.getUpcoming().subscribe(onNext: { (result) in
+            print(result.results?.first?.title)
+            print(result.results?.first?.getPosterURL())
             print("SUCCESS!!!")
         }).addDisposableTo(disposeBag)
     }

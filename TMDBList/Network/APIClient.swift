@@ -15,10 +15,9 @@ import Moya_ObjectMapper
 let DefaultProvider = Provider<Target>()
 
 class APIClient {
-    static func getUpcoming(page: Int? = 1) -> Observable<Void> {
+    static func getUpcoming(page: Int? = 1) -> Observable<RequestResult> {
         return DefaultProvider.request(.getUpcoming(page: page))
             .processResponse()
-            .map({ (_) -> Void in })
+            .mapObject(RequestResult.self)
     }
-    
 }
