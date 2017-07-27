@@ -9,7 +9,18 @@
 import UIKit
 import ObjectMapper
 
-let ImageBasePath = "https://image.tmdb.org/t/p/w185"
+let ImageBasePath = "https://image.tmdb.org/t/p/"
+
+enum ImageSizeOptions: String {
+    case width92 = "w92"
+    case width154 = "w154"
+    case width185 = "w185"
+    case width342 = "w342"
+    case width500 = "w500"
+    case width780 = "w780"
+    case original = "original"
+}
+
 
 class Movie: Mappable {
     
@@ -28,6 +39,20 @@ class Movie: Mappable {
     var releaseDate: String?
     var video: Bool?
     
+    //details
+    var belongsToCollection: String?
+    var budget: Int?
+    var genres: [GenericItem]?
+    var homePage: URL?
+    var productionCompanies: [GenericItem]?
+    var productionCountries: [GenericItem]?
+    var revenue: Int?
+    var runtime: Int?
+    var languages: [GenericItem]?
+    var status: String?
+    var tagline: String?
+    
+    
     required init?(map: Map) {}
     
     func mapping(map: Map) {
@@ -45,16 +70,28 @@ class Movie: Mappable {
         voteCount <- map["vote_count"]
         releaseDate <- map["release_date"]
         video <- map["video"]
+        //details
+        belongsToCollection <- map["belongs_to_collection"]
+        budget <- map["budget"]
+        genres <- map["genres"]
+        homePage <- map["homepage"]
+        productionCompanies <- map["production_companies"]
+        productionCountries <- map["production_countries"]
+        revenue <- map["revenue"]
+        runtime <- map["runtime"]
+        languages <- map["spoken_languages"]
+        status <- map["status"]
+        tagline <- map["tagline"]
     }
     
-    func getBackdropURL() -> URL? {
+    func getBackdropURL(with size: ImageSizeOptions) -> URL? {
         guard let path = backdropImagePath else { return nil }
-        return URL(string: "\(ImageBasePath)\(path)")
+        return URL(string: "\(ImageBasePath)\(size.rawValue)\(path)")
     }
     
-    func getPosterURL() -> URL? {
+    func getPosterURL(with size: ImageSizeOptions) -> URL? {
         guard let path = posterImagePath else { return nil }
-        return URL(string: "\(ImageBasePath)\(path)")
+        return URL(string: "\(ImageBasePath)\(size.rawValue)\(path)")
     }
     
 }

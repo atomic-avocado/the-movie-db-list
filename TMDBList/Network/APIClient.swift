@@ -20,4 +20,10 @@ class APIClient {
             .processResponse()
             .mapObject(RequestResult.self)
     }
+    
+    static func getMovieDetail(id: Int) -> Observable<Movie> {
+        return DefaultProvider.request(.getMovieDetails(id: id))
+            .processResponse()
+            .mapObject(Movie.self)
+    }
 }

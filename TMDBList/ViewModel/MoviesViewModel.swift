@@ -62,6 +62,20 @@ class MoviesViewModel {
         return self.movies.asObservable()
     }
     
+    func getMovieId(atIndex index: IndexPath) -> Int {
+        if index.row < movies.value.count, let movieId = movies.value[index.row].id  {
+            return movieId
+        }
+        return 0
+    }
+    
+    func getMovieTitle(atIndex index: IndexPath) -> String {
+        if index.row < movies.value.count, let title = movies.value[index.row].title  {
+            return title
+        }
+        return ""
+    }
+    
     func didFinishRefreshing() -> Observable<Bool> {
         return self.finishedRefreshing.asObservable()
     }

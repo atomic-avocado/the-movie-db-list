@@ -35,7 +35,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func populate(with movie: Movie) {
-        posterImageView.kf.setImage(with: movie.getPosterURL(), placeholder: R.image.poster_placeholder())
+        posterImageView.kf.setImage(with: movie.getPosterURL(with: .width185), placeholder: R.image.poster_placeholder())
         titleLabel.text = movie.title
         descriptionLabel.text = movie.overview
         if let average = movie.voteAverage {

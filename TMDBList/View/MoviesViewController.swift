@@ -26,6 +26,7 @@ class MoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = R.string.localizable.upcoming_title()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         configTableView()
         bind()
     }
@@ -78,8 +79,13 @@ class MoviesViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        tableView.rx.itemSelected.asObservable().subscribe(onNext: { (indexPath) in
-            print(indexPath.row)
+        tableView.rx.itemSelected.asObservable().subscribe(onNext: { [weak self] (indexPath) in
+            if let strongSelf = self {
+                let id = strongSelf.viewModel.getMovieId(atIndex: indexPath)
+                let title = strongSelf.viewModel.getMovieTitle(atIndex: indexPath)
+                let viewController = MovieDetailViewController(id: id, title: title)
+                strongSelf.navigationController?.pushViewController(viewController, animated: true)
+            }
         }).addDisposableTo(disposeBag)
         
         viewModel.getErrorObservable().subscribe(onNext: { [weak self] (error) in
