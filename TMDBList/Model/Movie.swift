@@ -94,4 +94,38 @@ class Movie: Mappable {
         return URL(string: "\(ImageBasePath)\(size.rawValue)\(path)")
     }
     
+    func getGenres() -> String? {
+        guard let array = genres else { return nil }
+        var names: [String] = []
+        for item in array {
+            if let name = item.name {
+                names.append(name)
+            }
+        }
+        return names.joined(separator: ", ")
+    }
+    
+    func getProducers() -> String? {
+        guard let array = productionCompanies else { return nil }
+        var names: [String] = []
+        for item in array {
+            if let name = item.name {
+                names.append(name)
+            }
+        }
+        return names.joined(separator: ", ")
+    }
+    
+    func getLanguages() -> String? {
+        guard let array = languages else { return nil }
+        var names: [String] = []
+        for item in array {
+            if let name = item.name {
+                names.append(name)
+            }
+        }
+        return names.joined(separator: ", ")
+    }
+    
+    
 }

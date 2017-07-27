@@ -32,7 +32,6 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = UIColor.cyan
         contentStackView.spacing = 16.0
         bind()
     }
@@ -50,16 +49,59 @@ class MovieDetailViewController: UIViewController {
     }
     
     func addLabels(with colors: UIImageColors, movie: Movie) {
-        if let title = movie.title {
-            addAttributeLabel(description: title, colors: colors)
+        if let status = movie.status {
+            addAttributeLabel(title: R.string.localizable.details_status(),
+                              description: status, colors: colors)
         }
-        if let description = movie.overview {
-            addAttributeLabel(description: description, colors: colors)
+        if let title = movie.title {
+            addAttributeLabel(title: R.string.localizable.details_title(),
+                              description: title, colors: colors)
+        }
+        if let tagline = movie.tagline {
+            addAttributeLabel(title: R.string.localizable.details_tagline(),
+                              description: tagline, colors: colors)
+        }
+        
+        if let overview = movie.overview {
+            addAttributeLabel(title: R.string.localizable.details_overview(),
+                              description: overview, colors: colors)
+        }
+        if let rating = movie.voteAverage {
+            addAttributeLabel(title: R.string.localizable.details_rating(),
+                              description: "\(rating) / 10", colors: colors)
+        }
+        if let runtime = movie.runtime {
+            addAttributeLabel(title: R.string.localizable.details_runtime(),
+                              description: "\(runtime)min", colors: colors)
+        }
+        if let adult = movie.adult {
+            addAttributeLabel(title: R.string.localizable.details_adult(),
+                              description: adult.description, colors: colors)
+        }
+        if let budget = movie.budget?.getCurrencyString() {
+            addAttributeLabel(title: R.string.localizable.details_budget(),
+                              description: budget, colors: colors)
+        }
+        if let revenue = movie.revenue?.getCurrencyString() {
+            addAttributeLabel(title: R.string.localizable.details_revenue(),
+                              description: revenue, colors: colors)
+        }
+        if let genres = movie.getGenres() {
+            addAttributeLabel(title: R.string.localizable.details_genres(),
+                              description: genres, colors: colors)
+        }
+        if let producers = movie.getProducers() {
+            addAttributeLabel(title: R.string.localizable.details_producers(),
+                              description: producers, colors: colors)
+        }
+        if let languages = movie.getLanguages() {
+            addAttributeLabel(title: R.string.localizable.details_languages(),
+                              description: languages, colors: colors)
         }
     }
     
     
-    func addAttributeLabel(_ title: String = "", description: String, colors: UIImageColors) {
+    func addAttributeLabel(title: String = "", description: String, colors: UIImageColors) {
         let label = UILabel()
         label.numberOfLines = 0
         let text = "\(title) \(description)"

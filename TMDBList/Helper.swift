@@ -51,3 +51,12 @@ extension UIViewController {
         _ = self.present(errorAlert, animated: true, completion: nil)
     }
 }
+
+extension Int {
+    func getCurrencyString() -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.currency
+        formatter.maximumFractionDigits = 0;
+        return formatter.string(from: NSNumber(integerLiteral: self))
+    }
+}
