@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  TMDBList
+
+  Created by Victor Robertson on 27/07/17.
+  Copyright © 2017 magpali. All rights reserved.
+*/
+
+"upcoming_title" = "Upcoming";
+"unexpected_error_title" = "Oops..";
+"unexpected_error_message" = "Something unexpected has happened.";
+"global_cancel" = "No problem";
+"global_try_again" = "Try Again";
+"empty_movies" = "No movies found";

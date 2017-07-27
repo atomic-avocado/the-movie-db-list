@@ -9,22 +9,22 @@
 import UIKit
 import ObjectMapper
 
-let ImageBasePath = "https://image.tmdb.org/t/p/w342"
+let ImageBasePath = "https://image.tmdb.org/t/p/w185"
 
 class Movie: Mappable {
     
     var id: Int?
-    var voteAverage: Float?
+    var voteAverage: Double?
     var genreIds: [Int]?
     var originalTitle: String?
     var backdropImagePath: String?
     var adult: Bool?
-    var popularity: Float?
+    var popularity: Double?
     var posterImagePath: String?
     var title: String?
     var overview: String?
     var originalLanguage: String?
-    var voteCount: Int?
+    var voteCount: Double?
     var releaseDate: String?
     var video: Bool?
     
@@ -32,7 +32,7 @@ class Movie: Mappable {
     
     func mapping(map: Map) {
         id <- map["id"]
-        voteAverage <- map["vote_averate"]
+        voteAverage <- map["vote_average"]
         genreIds <- map["genre_ids"]
         originalTitle <- map["original_title"]
         backdropImagePath <- map["backdrop_path"]

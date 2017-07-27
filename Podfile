@@ -8,4 +8,5 @@ target 'TMDBList' do
 	pod 'Moya-ObjectMapper/RxSwift', '~> 2.3'
 	pod 'R.swift', '~> 3.0'
 	pod 'Kingfisher', '~> 3.10'
+	pod 'UIImageColors', '~> 1.4'
 end
