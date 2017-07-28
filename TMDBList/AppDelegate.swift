@@ -15,7 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let initialVC = MoviesViewController(nibName: R.nib.moviesViewController.name, bundle: nil)
+        let navigationController = UINavigationController(rootViewController: initialVC)
+        navigationController.navigationBar.isHidden = false
+        navigationController.navigationBar.tintColor = .white
+        navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController.navigationBar.barTintColor = .grafity
+        UIApplication.shared.statusBarStyle = .lightContent
+        window?.rootViewController = navigationController
         return true
     }
 

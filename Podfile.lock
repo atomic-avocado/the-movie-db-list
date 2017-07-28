@@ -1,0 +1,53 @@
+PODS:
+  - Alamofire (4.5.0)
+  - Kingfisher (3.10.3)
+  - Moya (8.0.5):
+    - Moya/Core (= 8.0.5)
+  - Moya-ObjectMapper/Core (2.3.2):
+    - Moya (~> 8.0)
+    - ObjectMapper (~> 2.2)
+  - Moya-ObjectMapper/RxSwift (2.3.2):
+    - Moya-ObjectMapper/Core
+    - Moya/RxSwift
+    - RxSwift (~> 3.1)
+  - Moya/Core (8.0.5):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (8.0.5):
+    - Moya/Core
+    - RxSwift (~> 3.0)
+  - ObjectMapper (2.2.8)
+  - R.swift (3.3.0):
+    - R.swift.Library (~> 3.0.2)
+  - R.swift.Library (3.0.2)
+  - Result (3.2.3)
+  - RxCocoa (3.5.0):
+    - RxSwift (~> 3.4)
+  - RxSwift (3.5.0)
+  - UIImageColors (1.4.0)
+
+DEPENDENCIES:
+  - Kingfisher (~> 3.10)
+  - Moya (~> 8.0)
+  - Moya-ObjectMapper/RxSwift (~> 2.3)
+  - R.swift (~> 3.0)
+  - RxCocoa (~> 3.5)
+  - RxSwift (~> 3.5)
+  - UIImageColors (~> 1.4)
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Kingfisher: a0ac82dc5bcf0388dd74b294cf2cc13730c63436
+  Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
+  Moya-ObjectMapper: 1b05f10bb69fb6c8750d497d2974c1c63c08c3a9
+  ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
+  R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
+  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  RxCocoa: a0a09f45d0e5b48ecb6a4a7b4b4c89c88d3f633f
+  RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
+  UIImageColors: 1f891e1a3224efebb01ad476df3a5aed4220ee24
+
+PODFILE CHECKSUM: 4a11ad6e1668b2bb103878ff00e7757d1a09093e
+
+COCOAPODS: 1.2.1

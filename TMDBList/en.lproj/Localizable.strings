@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  TMDBList
+
+  Created by Victor Robertson on 27/07/17.
+  Copyright © 2017 magpali. All rights reserved.
+*/
+
+"unexpected_error_title" = "Oops..";
+"unexpected_error_message" = "Something unexpected has happened.";
+"global_cancel" = "No problem";
+"global_try_again" = "Try Again";
+"empty_movies" = "No movies found";
+"details_status" = "Status:";
+"details_title" = "Title:";
+"details_tagline" = "Tagline:";
+"details_overview" = "Overview: ";
+"details_rating" = "Rating:";
+"details_runtime" = "Runtime:";
+"details_adult" = "Adult:";
+"details_budget" = "Budget:";
+"details_revenue" = "Revenue:";
+"details_genres" = "Genres:";
+"details_producers" = "Producers:";
+"details_languages" = "Spoken Languages:";
