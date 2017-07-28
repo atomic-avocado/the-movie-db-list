@@ -37,6 +37,12 @@ class MoviesViewController: UIViewController {
         bind()
     }
     
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        dismissKeyboard()
+//    }
+//    
     override var prefersStatusBarHidden: Bool {
         return false
         
@@ -68,7 +74,7 @@ class MoviesViewController: UIViewController {
     }
     
     func dismissKeyboard() {
-        view.endEditing(true)
+        searchBar.endEditing(true)
         guard let tap = tapGesture else { return }
         view.removeGestureRecognizer(tap)
     }
