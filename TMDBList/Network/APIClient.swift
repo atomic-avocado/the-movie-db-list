@@ -26,4 +26,10 @@ class APIClient {
             .processResponse()
             .mapObject(Movie.self)
     }
+    
+    static func searchMovies(with name: String, page: Int? = 1) -> Observable<RequestResult> {
+        return DefaultProvider.request(.searchMovie(named: name, page: page))
+            .processResponse()
+            .mapObject(RequestResult.self)
+    }
 }

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesViewController" customModule="TMDBList" customModuleProvider="target">
             <connections>
+                <outlet property="searchBar" destination="Tw3-aY-eNe" id="aLv-al-ghk"/>
                 <outlet property="tableView" destination="dyh-Oi-WM9" id="Xmg-Rg-aGi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,17 +22,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dyh-Oi-WM9">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Tw3-aY-eNe">
+                    <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="dyh-Oi-WM9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="H41-L2-awV"/>
+                <constraint firstItem="dyh-Oi-WM9" firstAttribute="top" secondItem="Tw3-aY-eNe" secondAttribute="bottom" id="GmE-F9-zPk"/>
+                <constraint firstItem="Tw3-aY-eNe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HFf-32-Eyj"/>
+                <constraint firstAttribute="trailing" secondItem="Tw3-aY-eNe" secondAttribute="trailing" id="LVn-Dr-e60"/>
                 <constraint firstAttribute="trailing" secondItem="dyh-Oi-WM9" secondAttribute="trailing" id="ZDr-Ch-1YV"/>
                 <constraint firstItem="dyh-Oi-WM9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aw4-v6-Jk4"/>
+                <constraint firstItem="Tw3-aY-eNe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="bJC-oX-3pM"/>
                 <constraint firstAttribute="bottom" secondItem="dyh-Oi-WM9" secondAttribute="bottom" id="cRN-KK-axp"/>
             </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
 </document>

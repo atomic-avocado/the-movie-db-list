@@ -12,7 +12,10 @@ import RxSwift
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var button: UIButton!
     
+    var timer: Timer? = nil
     var viewModel = MoviesViewModel()
     var disposeBag = DisposeBag()
     
@@ -23,16 +26,24 @@ class MoviesViewController: UIViewController {
         return control
     }()
     
+    var tapGesture: UITapGestureRecognizer? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = R.string.localizable.upcoming_title()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        applyLayout()
         configTableView()
         bind()
     }
     
-    func refresh() {
-        viewModel.requestUpcomingMovies()
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    func applyLayout() {
+        automaticallyAdjustsScrollViewInsets = false
+        view.backgroundColor = .grafity
+        title = R.string.localizable.upcoming_title()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func configTableView() {
@@ -46,6 +57,26 @@ class MoviesViewController: UIViewController {
         tableView.addSubview(refreshControl)
     }
     
+    func hideKeyboardWhenTappedAround() {
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture?.cancelsTouchesInView = true
+        guard let tap = tapGesture else { return }
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+        guard let tap = tapGesture else { return }
+        view.removeGestureRecognizer(tap)
+    }
+    
+    func refresh() {
+        viewModel.requestUpcomingMovies()
+    }
+    
+    func searchMovies(timer: Timer) {
+        viewModel.searchMovies()
+    }
     func bind() {
         viewModel.getMovies()
             .bind(to: tableView.rx.items(cellIdentifier: R.reuseIdentifier.movieCell.identifier,
@@ -73,6 +104,12 @@ class MoviesViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
+        
+        viewModel.getErrorObservable().subscribe(onNext: { [weak self] (error) in
+            guard let _ = error else { return }
+            self?.showErrorAlert()
+        }).addDisposableTo(disposeBag)
+        
         tableView.rx.willDisplayCell.asObservable().subscribe(onNext: { [weak self] (cell: UITableViewCell, indexPath: IndexPath) in
             if indexPath.row == self?.viewModel.getInfiniteScrollTrigger() {
                 self?.viewModel.getNextPage()
@@ -88,11 +125,23 @@ class MoviesViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        viewModel.getErrorObservable().subscribe(onNext: { [weak self] (error) in
-            guard let _ = error else { return }
-            self?.showErrorAlert()
+        searchBar.rx.textDidBeginEditing.subscribe(onNext: { [weak self] (_) in
+            self?.hideKeyboardWhenTappedAround()
         }).addDisposableTo(disposeBag)
         
+        searchBar.rx.text.asObservable().skip(1).subscribe(onNext: { [weak self] (text) in
+            guard let strongSelf = self, let name = text else { return }
+            strongSelf.timer?.invalidate()
+            strongSelf.timer = Timer.scheduledTimer(
+                timeInterval: 1,
+                target: strongSelf,
+                selector: #selector(strongSelf.searchMovies),
+                userInfo: ["text": name],
+                repeats: false)
+        }).addDisposableTo(disposeBag)
+        
+        searchBar.rx.text.asObservable().bind(to: viewModel.searchString).addDisposableTo(disposeBag)
     }
     
 }
+

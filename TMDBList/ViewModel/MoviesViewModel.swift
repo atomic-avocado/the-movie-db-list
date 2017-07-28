@@ -19,6 +19,7 @@ class MoviesViewModel {
     private var totalPages = 1
     private var totalMovies = 0
     let movies = Variable<[Movie]>([])
+    let searchString = Variable<String?>("")
     
     init() {
         requestUpcomingMovies()
@@ -39,14 +40,48 @@ class MoviesViewModel {
         }).addDisposableTo(disposeBag)
     }
     
-    func getNextPage() {
-        if currentPage < totalPages {
-            APIClient.getUpcoming(page: currentPage + 1).subscribe(onNext: { [weak self] (result) in
-                if let movies = result.results { self?.movies.value.append(contentsOf: movies) }
-                if let current = result.page { self?.currentPage = current }
+    func getNextUpcoming() {
+        APIClient.getUpcoming(page: currentPage + 1).subscribe(onNext: { [weak self] (result) in
+            if let movies = result.results { self?.movies.value.append(contentsOf: movies) }
+            if let current = result.page { self?.currentPage = current }
             }, onError: { [weak self] (error) in
                 self?.error.value = error as NSError
-            }).addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
+    }
+    
+    func searchMovies() {
+        guard let name = searchString.value else { return }
+        if name.characters.count == 0 { return requestUpcomingMovies() }
+        APIClient.searchMovies(with: name).subscribe(onNext: { [weak self] (result) in
+            if let movies = result.results {
+                self?.movies.value = movies
+            }
+            if let current = result.page { self?.currentPage = current }
+            if let pages = result.totalPages { self?.totalPages = pages }
+            if let total = result.totalResults { self?.totalMovies = total }
+            }, onError: { [weak self] (error) in
+                self?.error.value = error as NSError
+            }, onCompleted: { [weak self] (_) in
+                self?.finishedRefreshing.onNext(true)
+        }).addDisposableTo(disposeBag)
+    }
+    
+    func getNextSearch() {
+        guard let name = searchString.value else { return }
+        APIClient.searchMovies(with: name, page: currentPage + 1).subscribe(onNext: { [weak self] (result) in
+            if let movies = result.results { self?.movies.value.append(contentsOf: movies) }
+            if let current = result.page { self?.currentPage = current }
+            }, onError: { [weak self] (error) in
+                self?.error.value = error as NSError
+        }).addDisposableTo(disposeBag)
+    }
+    
+    func getNextPage() {
+        if currentPage < totalPages {
+            guard let count = searchString.value?.characters.count, count > 0 else {
+                return getNextUpcoming()
+            }
+            getNextSearch()
         }
     }
     

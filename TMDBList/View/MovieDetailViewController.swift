@@ -32,6 +32,7 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .grafity
         contentStackView.spacing = 16.0
         bind()
     }

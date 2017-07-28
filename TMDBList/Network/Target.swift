@@ -14,6 +14,7 @@ import RxSwift
 enum Target {
     case getUpcoming(page: Int?)
     case getMovieDetails(id: Int)
+    case searchMovie(named: String, page: Int?)
 }
 
 extension Target: TargetType {
@@ -26,13 +27,16 @@ extension Target: TargetType {
             return "movie/upcoming"
         case .getMovieDetails(let id):
             return "movie/\(id)"
+        case .searchMovie:
+            return "search/movie"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .getUpcoming,
-             .getMovieDetails:
+             .getMovieDetails,
+             .searchMovie:
             return .get
         }
     }
@@ -44,8 +48,14 @@ extension Target: TargetType {
             if let page = page {
                 parameters["page"] = page as Any
             }
+        case .searchMovie(let named, let page):
+            parameters["query"] = named as Any
+            if let page = page {
+                parameters["page"] = page as Any
+            }
         case .getMovieDetails:
             break
+            
         }
         return parameters
     }

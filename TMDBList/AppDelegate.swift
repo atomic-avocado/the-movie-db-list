@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController.navigationBar.tintColor = .white
         navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController.navigationBar.barTintColor = .grafity
-        
+        UIApplication.shared.statusBarStyle = .lightContent
         window?.rootViewController = navigationController
         return true
     }
