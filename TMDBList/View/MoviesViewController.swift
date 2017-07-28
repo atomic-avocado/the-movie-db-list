@@ -12,8 +12,10 @@ import RxSwift
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var button: UIButton!
+    
+    
+    var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 36, height: 20))
+//    var searchBar = UISearchBar()
     
     var timer: Timer? = nil
     var viewModel = MoviesViewModel()
@@ -37,12 +39,13 @@ class MoviesViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
         return false
+        
     }
     
     func applyLayout() {
-        automaticallyAdjustsScrollViewInsets = false
+        let leftNavBarButton = UIBarButtonItem(customView: searchBar)
+        navigationItem.leftBarButtonItem = leftNavBarButton
         view.backgroundColor = .grafity
-        title = R.string.localizable.upcoming_title()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
